@@ -106,6 +106,11 @@ void leituraIngrediente (struct Ingredientes ing[],int &conting) {
     conting = i-1;
 }
 
+void inclusao_categoria(struct Categoria cats[],int contcats,struct Categoria catt[],int contcatt, struct Categoria cata[],int contcata) {
+int i=0,j=0,k=0;
+
+}
+
 
 int main() {
   struct Categoria cats[20], catt[20], cata[40];
@@ -118,4 +123,5 @@ int main() {
     leituraCategoria(cats,contcats);
     cout<<"Leitura de Categoria T"<<endl;
     leituraCategoria(catt,contcatt);
+    inclusao_categoria(cats,contcats,catt,contcatt,cata,contcata);
 }
