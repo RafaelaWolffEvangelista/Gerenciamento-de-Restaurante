@@ -126,7 +126,25 @@ int i=0,j=0,k=0;
           j++;
       }
   }
-
+    while (i < cats) {
+        cata[k].codigo = cats[i].codigo;
+        strcpy (cata[k].nome, cats[i].nome);
+        strcpy (cata[k].endereco, cats[i].endereco);
+        strcpy (cata[k].cidade, cats[i].cidade);
+        strcpy (cata[k].uf, cats[i].uf);
+        i++;
+        k++;
+    }
+    while (j < contt) {
+        cata[k].codigo = catt[j].codigo;
+        strcpy (cata[k].nome, catt[j].nome);
+        strcpy (cata[k].endereco, catt[j].endereco);
+        strcpy (cata[k].cidade, catt[j].cidade);
+        strcpy (cata[k].uf, catt[j].uf);
+        j++;
+        k++;
+    }
+contcata = k;
 }
 
 
