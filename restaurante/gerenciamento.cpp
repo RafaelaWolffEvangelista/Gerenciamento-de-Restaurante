@@ -108,6 +108,24 @@ void leituraIngrediente (struct Ingredientes ing[],int &conting) {
 
 void inclusao_categoria(struct Categoria cats[],int contcats,struct Categoria catt[],int contcatt, struct Categoria cata[],int contcata) {
 int i=0,j=0,k=0;
+  for (;i<contcats && j<contcatt;k++) {
+      if (cats[i].codigo<catt[j].codigo) {
+          cata[k].codigo=cats[i].codigo;
+          strcpy (cata[k].nome,cats[i].nome);
+          strcpy (cata[k].endereco,cats[i].endereco);
+          strcpy (cata[k].cidade,cats[i].cidade);
+          strcpy (cata[k].uf,cats[i].uf);
+          i++;
+      }
+      else {
+          cata[k].codigo=catt[j].codigo;
+          strcpy (cata[k].nome,catt[j].nome);
+          strcpy (cata[k].endereco,catt[j].endereco);
+          strcpy (cata[k].cidade,catt[j].cidade);
+          strcpy (cata[k].uf,catt[j].uf);
+          j++;
+      }
+  }
 
 }
 
@@ -116,8 +134,8 @@ int main() {
   struct Categoria cats[20], catt[20], cata[40];
   struct Produto pros[20], prot[20], proa[40];
   struct Ingrediente ings[20], ingt[20], inga[40];
-  int contcats,contcatt,contcata
-    , contpros,contprot,contproa,
+  int contcats,contcatt,contcata,
+      contpros,contprot,contproa,
       contings,contingt,continga;
     cout<<"Leitura de Categoria S"<<endl;
     leituraCategoria(cats,contcats);
