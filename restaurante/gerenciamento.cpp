@@ -1,5 +1,8 @@
 
 #include <iostream>
+#include <string>
+#include <conio.h>
+
 using namespace std;
 
 struct Categoria {
@@ -83,8 +86,8 @@ void leituraProduto (struct Produto p[],int &contpro) {
     contpro = i-1;
 }
 
-void leituraIngrediente (struct Ingredientes ing[],int &conting) {
-   int i=0;
+void leituraIngrediente (struct Ingrediente ing[],int &conting) {
+    int i=0;
     for (int saida = 1; i < 20 && saida != 0; i++) {
         cout <<"Ingredientes: " << i+1 << ": ";
         cout<<"Codigo: ";
@@ -97,7 +100,7 @@ void leituraIngrediente (struct Ingredientes ing[],int &conting) {
             cout<<"Estoque Minimo: ";
             cin >> ing[i].estoque_minimo;
             cout<<"Estoque Maximo: ";
-            cin>> ing[i].estoque.maximo;
+            cin>> ing[i].estoque_maximo;
             cout<<"Preco Unitario: ";
             cin >> ing[i].preco_unitario;
         }
@@ -111,36 +114,24 @@ int i=0,j=0,k=0;
   for (;i<contcats && j<contcatt;k++) {
       if (cats[i].codigo<catt[j].codigo) {
           cata[k].codigo=cats[i].codigo;
-          strcpy (cata[k].nome,cats[i].nome);
-          strcpy (cata[k].endereco,cats[i].endereco);
-          strcpy (cata[k].cidade,cats[i].cidade);
-          strcpy (cata[k].uf,cats[i].uf);
+          cata[k].descricao= cats[i].descricao;
           i++;
       }
       else {
           cata[k].codigo=catt[j].codigo;
-          strcpy (cata[k].nome,catt[j].nome);
-          strcpy (cata[k].endereco,catt[j].endereco);
-          strcpy (cata[k].cidade,catt[j].cidade);
-          strcpy (cata[k].uf,catt[j].uf);
+          cata[k].descricao= catt[j].descricao;
           j++;
       }
   }
-    while (i < cats) {
+    while (i < contcats) {
         cata[k].codigo = cats[i].codigo;
-        strcpy (cata[k].nome, cats[i].nome);
-        strcpy (cata[k].endereco, cats[i].endereco);
-        strcpy (cata[k].cidade, cats[i].cidade);
-        strcpy (cata[k].uf, cats[i].uf);
+        cata[k].descricao= cats[i].descricao;
         i++;
         k++;
     }
-    while (j < contt) {
+    while (j < contcatt) {
         cata[k].codigo = catt[j].codigo;
-        strcpy (cata[k].nome, catt[j].nome);
-        strcpy (cata[k].endereco, catt[j].endereco);
-        strcpy (cata[k].cidade, catt[j].cidade);
-        strcpy (cata[k].uf, catt[j].uf);
+        cata[k].descricao= catt[j].descricao;
         j++;
         k++;
     }
