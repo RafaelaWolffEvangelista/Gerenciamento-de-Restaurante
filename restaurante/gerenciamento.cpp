@@ -107,8 +107,15 @@ void leituraIngrediente (struct Ingredientes ing[],int &conting) {
 }
 
 
-
-
 int main() {
-
+  struct Categoria cats[20], catt[20], cata[40];
+  struct Produto pros[20], prot[20], proa[40];
+  struct Ingrediente ings[20], ingt[20], inga[40];
+  int contcats,contcatt,contcata
+    , contpros,contprot,contproa,
+      contings,contingt,continga;
+    cout<<"Leitura de Categoria S"<<endl;
+    leituraCategoria(cats,contcats);
+    cout<<"Leitura de Categoria T"<<endl;
+    leituraCategoria(catt,contcatt);
 }
