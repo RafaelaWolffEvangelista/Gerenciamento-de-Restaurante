@@ -52,43 +52,58 @@ struct Consumo_Ingrediente {
     int codigo_ingrediente;
     int quant_necessaria;
 };
-void leituraCategoria (struct Categoria c[]) {
-    for (int i = 0; i < 3; i++) {
+
+void leituraCategoria (struct Categoria c[],int&contcat) {
+   int i=0;
+    for (int saida = 1; i < 20 && saida != 0; i++) {
         cout << "Categoria " << i+1 << ": ";
         cout <<"Codigo: ";
         cin >>c[i].codigo;
-        cout <<"Descricao: ";
-        cin >> c[i].descricao;
+        if (c[i].codigo > 0) {
+            cout <<"Descricao: ";
+            cin >> c[i].descricao;
+        }
+        else saida=0;
     }
+   contcat = i-1;
 }
 
-void leituraProduto (struct Produto p[]) {
-    for (int i = 0; i < 3; i++) {
+void leituraProduto (struct Produto p[],int &contpro) {
+   int i=0;
+    for (int saida = 1; i < 20 && saida != 0; i++) {
         cout <<"Produtos: " << i+1 << ": ";
         cout<<"Codigo:";
         cin >>p[i].codigo;
-        cout <<"Preco unitario ";
-        cin >> p[i].preco_unitario;
+        if (p[i].codigo > 0) {
+            cout <<"Preco unitario ";
+            cin >> p[i].preco_unitario;
+        }
+        else saida=0;
     }
+    contpro = i-1;
 }
 
-void leituraIngreduentente (struct Ingredientes ing[]) {
-    for (int i = 0; i < 3; i++) {
+void leituraIngrediente (struct Ingredientes ing[],int &conting) {
+   int i=0;
+    for (int saida = 1; i < 20 && saida != 0; i++) {
         cout <<"Ingredientes: " << i+1 << ": ";
         cout<<"Codigo: ";
         cin >> ing[i].codigo;
-        cout <<"Descricao: ";
-        cin >> ing[i].descricao;
-        cout<<"Quantidade Estoque: ";
-        cin >>ing[i].quant_estoque;
-        cout<<"Estoque Minimo: ";
-        cin >> ing[i].estoque_minimo;
-        cout<<"Estoque Maximo: ";
-        cin>> ing[i].estoque.maximo;
-        cout<<"Preco Unitario: ";
-        cin >> ing[i].preco_unitario;
-
+        if (ing[i].codigo > 0) {
+            cout <<"Descricao: ";
+            cin >> ing[i].descricao;
+            cout<<"Quantidade Estoque: ";
+            cin >>ing[i].quant_estoque;
+            cout<<"Estoque Minimo: ";
+            cin >> ing[i].estoque_minimo;
+            cout<<"Estoque Maximo: ";
+            cin>> ing[i].estoque.maximo;
+            cout<<"Preco Unitario: ";
+            cin >> ing[i].preco_unitario;
+        }
+        else saida=0;
     }
+    conting = i-1;
 }
 
 
