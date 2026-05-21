@@ -146,7 +146,7 @@ void mostrar_categoria(struct Categoria cata[],int contcata) {
     }
 }
 
-/*void inclusao_produto(struct Categoria cata[],struct Produto pros[],int contpros,struct Produto prot[],int contprot,struct Produto proa[],int &contproa) {
+void inclusao_produto(struct Categoria cata[],struct Produto pros[],int contpros,struct Produto prot[],int contprot,struct Produto proa[],int &contproa) {
   int i=0, j=0, k=0, c=0;
    for (;i<contpros && j<contprot;k++) {
        if (pros[i].codigo<prot[j].codigo) {
@@ -183,7 +183,7 @@ void mostrar_categoria(struct Categoria cata[],int contcata) {
         k++;
     }
     contproa=k;
-}*/
+}
 
 int main() {
   struct Categoria cats[20], catt[20], cata[40];
@@ -193,12 +193,20 @@ int main() {
       contpros,contprot,contproa,
       contings,contingt,continga;
     cout<<"Leitura de Categoria S"<<endl;
+    cout<<"para sair de leitura digite 0"<<endl;
     leituraCategoria(cats,contcats);
     cout<<"Leitura de Categoria T"<<endl;
+    cout<<"para sair de leitura digite 0"<<endl;
     leituraCategoria(catt,contcatt);
     inclusao_categoria(cats, contcats, catt, contcatt, cata,contcata);
     mostrar_categoria(cata, contcata);
-   // inclusao_produto(cata, pros, contpros, prot, contprot, proa,contproa);
+    cout<<"Leitura de Produtos S"<<endl;
+    cout<<"para sair de leitura digite 0"<<endl;
+    leituraProduto(pros,contpros);
+    cout<<"Leitura de Produtos T"<<endl;
+    cout<<"para sair de leitura digite 0"<<endl;
+    leituraProduto(prot,contprot);
+   inclusao_produto(cata, pros, contpros, prot, contprot, proa,contproa);
 
     return 0;
 }
