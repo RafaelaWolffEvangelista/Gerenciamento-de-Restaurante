@@ -58,7 +58,7 @@ struct Consumo_Ingrediente {
 
 void leituraCategoria (struct Categoria cat[],int&contcat) {
    int i=0;
-    for (int saida = 1; i < 20 && saida != 0; i++) {
+    for (int saida = 1; i < 5 && saida != 0; i++) {
         cout << "Categoria " << i+1 << ": ";
         cout <<"Codigo: ";
         cin >>cat[i].codigo;
@@ -73,7 +73,7 @@ void leituraCategoria (struct Categoria cat[],int&contcat) {
 
 void leituraProduto (struct Produto pro[],int &contpro) {
    int i=0;
-    for (int saida = 1; i < 20 && saida != 0; i++) {
+    for (int saida = 1; i < 5 && saida != 0; i++) {
         cout <<"Produtos: " << i+1 << ": ";
         cout<<"Codigo:";
         cin >>pro[i].codigo;
@@ -88,7 +88,7 @@ void leituraProduto (struct Produto pro[],int &contpro) {
 
 void leituraIngrediente (struct Ingrediente ing[],int &conting) {
     int i=0;
-    for (int saida = 1; i < 20 && saida != 0; i++) {
+    for (int saida = 1; i < 5 && saida != 0; i++) {
         cout <<"Ingredientes: " << i+1 << ": ";
         cout<<"Codigo: ";
         cin >> ing[i].codigo;
@@ -109,7 +109,7 @@ void leituraIngrediente (struct Ingrediente ing[],int &conting) {
     conting = i-1;
 }
 
-void inclusao_categoria(struct Categoria cats[],int contcats,struct Categoria catt[],int contcatt, struct Categoria cata[],int contcata) {
+void inclusao_categoria(struct Categoria cats[],int contcats,struct Categoria catt[],int contcatt, struct Categoria cata[],int &contcata) {
 int i=0,j=0,k=0;
   for (;i<contcats && j<contcatt;k++) {
       if (cats[i].codigo<catt[j].codigo) {
@@ -138,10 +138,52 @@ int i=0,j=0,k=0;
 contcata = k;
 }
 
-void inclusao_produto(struct Produto pros[],int contpros,struct Produto prot[],int contprot,struct Produto proa[],int contproa) {
-  int i=0; j=0, k=0;
-    
+void mostrar_categoria(struct Categoria cata[],int contcata) {
+    cout << "\n\nLista dos Registros no Arquivo Atualizado" << endl;
+    for (int i=0;i<contcata;i++) {
+        cout << "\nCodigo: " << cata[i].codigo;
+        cout << "\nDescricao: " << cata[i].descricao;
+    }
 }
+
+/*void inclusao_produto(struct Categoria cata[],struct Produto pros[],int contpros,struct Produto prot[],int contprot,struct Produto proa[],int &contproa) {
+  int i=0, j=0, k=0, c=0;
+   for (;i<contpros && j<contprot;k++) {
+       if (pros[i].codigo<prot[j].codigo) {
+           proa[k].codigo=pros[i].codigo;
+           proa[k].descricao=pros[i].descricao;
+           proa[k].codigo_categoria=cata[c].codigo;
+           proa[k].preco_unitario=pros[i].preco_unitario;
+           i++;
+       }
+       else {
+           proa[k].codigo=prot[j].codigo;
+           proa[k].descricao=prot[j].descricao;
+           proa[k].codigo_categoria=cata[c].codigo;
+           proa[k].preco_unitario=prot[j].preco_unitario;
+           j++;
+       }
+   }
+
+    while (i<contpros) {
+        proa[k].codigo=pros[i].codigo;
+        proa[k].descricao=pros[i].descricao;
+        proa[k].codigo_categoria=cata[c].codigo;
+        proa[k].preco_unitario=pros[i].preco_unitario;
+        i++;
+        k++;
+    }
+
+    while (j<contprot) {
+        proa[k].codigo=prot[j].codigo;
+        proa[k].descricao=prot[j].descricao;
+        proa[k].codigo_categoria=cata[c].codigo;
+        proa[k].preco_unitario=prot[j].preco_unitario;
+        j++;
+        k++;
+    }
+    contproa=k;
+}*/
 
 int main() {
   struct Categoria cats[20], catt[20], cata[40];
@@ -154,6 +196,9 @@ int main() {
     leituraCategoria(cats,contcats);
     cout<<"Leitura de Categoria T"<<endl;
     leituraCategoria(catt,contcatt);
-    inclusao_categoria(cats,contcats,catt,contcatt,cata,contcata);
-    inclusao_produto(pros,contpros,prot,contprot,proa,contproa);
+    inclusao_categoria(cats, contcats, catt, contcatt, cata,contcata);
+    mostrar_categoria(cata, contcata);
+   // inclusao_produto(cata, pros, contpros, prot, contprot, proa,contproa);
+
+    return 0;
 }
