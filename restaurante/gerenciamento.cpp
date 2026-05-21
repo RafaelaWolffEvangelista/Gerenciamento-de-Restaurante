@@ -208,5 +208,7 @@ int main() {
     leituraProduto(prot,contprot);
    inclusao_produto(cata, pros, contpros, prot, contprot, proa,contproa);
 
+    //fazer o mostrar de produto, leitura no main de ingrediente,inclusao ingrediente e mostrar ingrediente
+
     return 0;
 }
