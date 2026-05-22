@@ -109,104 +109,105 @@ void leituraIngrediente (struct Ingrediente ing[],int &conting) {
     conting = i-1;
 }
 
-void inclusao_categoria(struct Categoria cats[],int contcats,struct Categoria catt[],int contcatt, struct Categoria cata[],int &contcata) {
+void inclusao_categoria(struct Categoria catS[],int contcatS,struct Categoria catT[],int contcatT, struct Categoria catA[],int &contcatA) {
 int i=0,j=0,k=0;
-  for (;i<contcats && j<contcatt;k++) {
-      if (cats[i].codigo<catt[j].codigo) {
-          cata[k].codigo=cats[i].codigo;
-          cata[k].descricao= cats[i].descricao;
+  for (;i<contcatS && j<contcatT;k++) {
+      if (catS[i].codigo<catT[j].codigo) {
+          catA[k].codigo=catS[i].codigo;
+          catA[k].descricao= catS[i].descricao;
           i++;
       }
       else {
-          cata[k].codigo=catt[j].codigo;
-          cata[k].descricao= catt[j].descricao;
+          catA[k].codigo=catT[j].codigo;
+          catA[k].descricao= catT[j].descricao;
           j++;
       }
   }
-    while (i < contcats) {
-        cata[k].codigo = cats[i].codigo;
-        cata[k].descricao= cats[i].descricao;
+    while (i < contcatS) {
+        catA[k].codigo = catS[i].codigo;
+        catA[k].descricao= catS[i].descricao;
         i++;
         k++;
     }
-    while (j < contcatt) {
-        cata[k].codigo = catt[j].codigo;
-        cata[k].descricao= catt[j].descricao;
+    while (j < contcatT) {
+        catA[k].codigo = catT[j].codigo;
+        catA[k].descricao= catT[j].descricao;
         j++;
         k++;
     }
-contcata = k;
+contcatA = k;
 }
 
-void mostrar_categoria(struct Categoria cata[],int contcata) {
+void mostrar_categoria(struct Categoria catA[],int contcatA) {
     cout << "\n\nLista dos Registros no Arquivo Atualizado" << endl;
-    for (int i=0;i<contcata;i++) {
-        cout << "\nCodigo: " << cata[i].codigo;
-        cout << "\nDescricao: " << cata[i].descricao;
+    for (int i=0;i<contcatA;i++) {
+        cout << "\nCodigo: " << catA[i].codigo;
+        cout << "\nDescricao: " << catA[i].descricao;
     }
 }
 
-void inclusao_produto(struct Categoria cata[],struct Produto pros[],int contpros,struct Produto prot[],int contprot,struct Produto proa[],int &contproa) {
+void inclusao_produto(struct Categoria catA[],struct Produto proS[],int contproS,struct Produto proT[],int contproT,struct Produto proA[],int &contproA) {
   int i=0, j=0, k=0, c=0;
-   for (;i<contpros && j<contprot;k++) {
-       if (pros[i].codigo<prot[j].codigo) {
-           proa[k].codigo=pros[i].codigo;
-           proa[k].descricao=pros[i].descricao;
-           proa[k].codigo_categoria=cata[c].codigo;
-           proa[k].preco_unitario=pros[i].preco_unitario;
+   for (;i<contproS && j<contproT;k++) {
+       if (proS[i].codigo<proT[j].codigo) {
+           proA[k].codigo=proS[i].codigo;
+           proA[k].descricao=proS[i].descricao;
+           proA[k].codigo_categoria=catA[c].codigo;
+           proA[k].preco_unitario=proS[i].preco_unitario;
            i++;
        }
        else {
-           proa[k].codigo=prot[j].codigo;
-           proa[k].descricao=prot[j].descricao;
-           proa[k].codigo_categoria=cata[c].codigo;
-           proa[k].preco_unitario=prot[j].preco_unitario;
+           proA[k].codigo=proT[j].codigo;
+           proA[k].descricao=proT[j].descricao;
+           proA[k].codigo_categoria=catA[c].codigo;
+           proA[k].preco_unitario=proT[j].preco_unitario;
            j++;
        }
    }
 
-    while (i<contpros) {
-        proa[k].codigo=pros[i].codigo;
-        proa[k].descricao=pros[i].descricao;
-        proa[k].codigo_categoria=cata[c].codigo;
-        proa[k].preco_unitario=pros[i].preco_unitario;
+    while (i<contproS) {
+        proA[k].codigo=proS[i].codigo;
+        proA[k].descricao=proS[i].descricao;
+        proA[k].codigo_categoria=catA[c].codigo;
+        proA[k].preco_unitario=proS[i].preco_unitario;
         i++;
         k++;
     }
 
-    while (j<contprot) {
-        proa[k].codigo=prot[j].codigo;
-        proa[k].descricao=prot[j].descricao;
-        proa[k].codigo_categoria=cata[c].codigo;
-        proa[k].preco_unitario=prot[j].preco_unitario;
+    while (j<contproT) {
+        proA[k].codigo=proT[j].codigo;
+        proA[k].descricao=proT[j].descricao;
+        proA[k].codigo_categoria=catA[c].codigo;
+        proA[k].preco_unitario=proT[j].preco_unitario;
         j++;
         k++;
     }
-    contproa=k;
+    contproA=k;
 }
 
 int main() {
-  struct Categoria cats[20], catt[20], cata[40];
-  struct Produto pros[20], prot[20], proa[40];
-  struct Ingrediente ings[20], ingt[20], inga[40];
-  int contcats,contcatt,contcata,
-      contpros,contprot,contproa,
-      contings,contingt,continga;
-    cout<<"Leitura de Categoria S"<<endl;
+  struct Categoria catS[20], catT[20], catA[40];
+  struct Produto proS[20], proT[20], proA[40];
+  struct Ingrediente ingS[20], ingT[20], ingA[40];
+  struct Garcom garS[20], garT[20], garA[20];
+  int contcatS,contcatT,contcatA,
+      contproS,contproT,contproA,
+      contingS,contingT,contingA;
+    cout<<"\T---Leitura de Categoria S---"<<endl;
     cout<<"para sair de leitura digite 0"<<endl;
-    leituraCategoria(cats,contcats);
-    cout<<"Leitura de Categoria T"<<endl;
+    leituraCategoria(catS,contcatS);
+    cout<<"\T---Leitura de Categoria T---"<<endl;
     cout<<"para sair de leitura digite 0"<<endl;
-    leituraCategoria(catt,contcatt);
-    inclusao_categoria(cats, contcats, catt, contcatt, cata,contcata);
-    mostrar_categoria(cata, contcata);
-    cout<<"Leitura de Produtos S"<<endl;
+    leituraCategoria(catT,contcatT);
+    inclusao_categoria(catS, contcatS, catT, contcatT, catA,contcatA);
+    mostrar_categoria(catA, contcatA);
+    cout<<"\T---Leitura de Produtos S---"<<endl;
     cout<<"para sair de leitura digite 0"<<endl;
-    leituraProduto(pros,contpros);
-    cout<<"Leitura de Produtos T"<<endl;
+    leituraProduto(proS,contproS);
+    cout<<"\T---Leitura de Produtos T---"<<endl;
     cout<<"para sair de leitura digite 0"<<endl;
-    leituraProduto(prot,contprot);
-   inclusao_produto(cata, pros, contpros, prot, contprot, proa,contproa);
+    leituraProduto(proT,contproT);
+   inclusao_produto(catA, proS, contproS, proT, contproT, proA,contproA);
 
     //fazer o mostrar de produto, leitura no main de ingrediente,inclusao ingrediente e mostrar ingrediente
 
