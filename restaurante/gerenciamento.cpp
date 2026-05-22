@@ -184,6 +184,18 @@ void inclusao_produto(struct Categoria catA[],struct Produto proS[],int contproS
     }
     contproA=k;
 }
+void mostrar_produto (struct Produto proA[], struct Categoria catA[], int contproA ) {
+    cout << "\n\nLista dos Registros no Arquivo Atualizado" << endl;
+    for (int i=0;i<contproA;i++) {
+        cout << "\nCodigo: " << proA[i].codigo;
+        cout << "\nDescricao: " << proA[i].descricao;
+        cout << "\n Codigo Categoria: " << catA[i].codigo;
+        cout << "\n Valor Unitario: " << proA[i].preco_unitario;
+
+    }
+}
+
+
 
 int main() {
   struct Categoria catS[20], catT[20], catA[40];
@@ -208,8 +220,9 @@ int main() {
     cout<<"para sair de leitura digite 0"<<endl;
     leituraProduto(proT,contproT);
    inclusao_produto(catA, proS, contproS, proT, contproT, proA,contproA);
+    mostrar_produto(proA, catA, contproA);
 
-    //fazer o mostrar de produto, leitura no main de ingrediente,inclusao ingrediente e mostrar ingrediente
+    // leitura no main de ingrediente,inclusao ingrediente e mostrar ingrediente
 
     return 0;
 }
