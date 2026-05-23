@@ -74,11 +74,13 @@ void leituraCategoria (struct Categoria cat[],int&contcat) {
 void leituraProduto (struct Produto pro[],int &contpro) {
    int i=0;
     for (int saida = 1; i < 5 && saida != 0; i++) {
-        cout <<"Produtos: " << i+1 << ": ";
-        cout<<"Codigo:";
+        cout <<"\TProdutos: " << i+1 << ": ";
+        cout<<"\nCodigo:";
         cin >>pro[i].codigo;
         if (pro[i].codigo > 0) {
-            cout <<"Preco unitario ";
+            cout<<"\nDescricao:";
+            cin >>pro[i].descricao;
+            cout <<"\nPreco unitario ";
             cin >> pro[i].preco_unitario;
         }
         else saida=0;
@@ -195,6 +197,61 @@ void mostrar_produto (struct Produto proA[], struct Categoria catA[], int contpr
     }
 }
 
+void inclusao_ingrediente (struct Ingrediente ingS[], int contingS, struct Ingrediente ingT[], int contingT, struct Ingrediente ingA[], int &contingA, struct Produto proA[]) {
+    int i=0, j=0, k=0,p=0;
+    for (;i<contingS && j<contingT;k++) {
+        if (ingS[i].codigo<ingT[j].codigo) {
+            ingA[k].codigo=ingS[i].codigo;
+            ingA[k].descricao=ingS[i].descricao;
+            ingA[k].quant_estoque=ingS[i].quant_estoque;
+            ingA[k].estoque_minimo=ingS[i].estoque_minimo;
+            ingA[k].estoque_maximo=ingS[i].estoque_maximo;
+            ingA[k].preco_unitario=proA[p].preco_unitario;
+            i++;
+        }
+        else {
+            ingA[k].codigo=ingT[j].codigo;
+            ingA[k].descricao=ingT[j].descricao;
+            ingA[k].quant_estoque=ingT[j].quant_estoque;
+            ingA[k].estoque_minimo=ingT[j].estoque_minimo;
+            ingA[k].estoque_maximo=ingT[j].estoque_maximo;
+            ingA[k].preco_unitario=proA[p].preco_unitario;
+            j++;
+        }
+    }
+    while (i < contingS) {
+        ingA[k].codigo=ingS[i].codigo;
+        ingA[k].descricao=ingS[i].descricao;
+        ingA[k].quant_estoque=ingS[i].quant_estoque;
+        ingA[k].estoque_minimo=ingS[i].estoque_minimo;
+        ingA[k].estoque_maximo=ingS[i].estoque_maximo;
+        ingA[k].preco_unitario=proA[p].preco_unitario;
+        i++;
+        k++;
+    }
+    while (j < contingT) {
+        ingA[k].codigo=ingT[j].codigo;
+        ingA[k].descricao=ingT[j].descricao;
+        ingA[k].quant_estoque=ingT[j].quant_estoque;
+        ingA[k].estoque_minimo=ingT[j].estoque_minimo;
+        ingA[k].estoque_maximo=ingT[j].estoque_maximo;
+        ingA[k].preco_unitario=proA[p].preco_unitario;
+        j++;
+        k++;
+    }
+    contingA=k;
+}
+void mostrar_ingrediente (struct Ingrediente ingA[], struct Produto proA[], int contingA) {
+    cout << "\n\nLista dos Registros no Arquivo Atualizado" << endl;
+    for (int i=0;i<contingA;i++) {
+        cout << "\n Codigo: "<< ingA[i].codigo;
+        cout << "\n Descricao: " << ingA[i].descricao;
+        cout << "\n Quantidade Estoque: " << ingA[i].quant_estoque;
+        cout << "\n Quantidade Minimo: " << ingA[i].estoque_minimo;
+        cout << "\n Quantidade Maximo: " << ingA[i].estoque_maximo;
+        cout << "\n Preco Unitario: " << proA[i].preco_unitario;
+    }
+}
 
 
 int main() {
@@ -209,7 +266,7 @@ int main() {
     cout<<"para sair de leitura digite 0"<<endl;
     leituraCategoria(catS,contcatS);
     cout<<"\T---Leitura de Categoria T---"<<endl;
-    cout<<"para sair de leitura digite 0"<<endl;
+    cout<<"\npara sair de leitura digite 0"<<endl;
     leituraCategoria(catT,contcatT);
     inclusao_categoria(catS, contcatS, catT, contcatT, catA,contcatA);
     mostrar_categoria(catA, contcatA);
@@ -217,10 +274,21 @@ int main() {
     cout<<"para sair de leitura digite 0"<<endl;
     leituraProduto(proS,contproS);
     cout<<"\T---Leitura de Produtos T---"<<endl;
-    cout<<"para sair de leitura digite 0"<<endl;
+    cout<<"\npara sair de leitura digite 0"<<endl;
     leituraProduto(proT,contproT);
    inclusao_produto(catA, proS, contproS, proT, contproT, proA,contproA);
     mostrar_produto(proA, catA, contproA);
+    cout<<"\T---Leitura Ingrediente S---"<<endl;
+    cout<<"para sair de leitura digite 0"<<endl;
+    leituraIngrediente(ingS,contingS);
+    cout<<"\T---Leitura Ingrediente T---"<<endl;
+    cout<<"para sair de leitura digite 0"<<endl;
+    leituraIngrediente(ingT,contingT);
+    inclusao_ingrediente(ingS, contingS, ingT,contingT, ingA,contingA, proA);
+    mostrar_ingrediente(ingA,proA,contingA);
+
+
+
 
     // leitura no main de ingrediente,inclusao ingrediente e mostrar ingrediente
 
