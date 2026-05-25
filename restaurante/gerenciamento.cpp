@@ -111,6 +111,21 @@ void leituraIngrediente (struct Ingrediente ing[],int &conting) {
     conting = i-1;
 }
 
+void leituraGarcom (struct Garcom gar[], int &contgar) {
+    int i=0;
+    for (int saida=1; i<5 && saida!=0; i++) {
+        cout<<"\t---Informacoes dos Garcoes---"<<endl;
+        cout<<"Codigo: "<<endl;
+        cin>>gar[i].codigo;
+        if (gar[i].codigo>0) {
+            cout<<"Nome: "<<endl;
+            cin>>gar[i].nome;
+        }
+        else saida=0;
+    }
+    contgar=i-1;
+}
+
 void inclusao_categoria(struct Categoria catS[],int contcatS,struct Categoria catT[],int contcatT, struct Categoria catA[],int &contcatA) {
 int i=0,j=0,k=0;
   for (;i<contcatS && j<contcatT;k++) {
@@ -253,44 +268,101 @@ void mostrar_ingrediente (struct Ingrediente ingA[], struct Produto proA[], int 
     }
 }
 
+void inclusao_garcom(struct Garcom garS[],int contgarS,struct Garcom garT[],int contgarT,struct Garcom garA[],int &contgarA) {
+    int i=0, j=0, k=0;
+    for (;i<contgarS && j<contgarT;k++) {
+        if (garS[i].codigo<garT[j].codigo) {
+            garA[k].codigo=garS[i].codigo;
+            garA[k].nome=garS[i].nome;
+            i++;
+        }
+        else{
+            garA[k].codigo=garT[j].codigo;
+            garA[k].nome=garT[j].nome;
+            j++;
+        }
+    }
+
+    while (i<contgarS) {
+        garA[k].codigo=garS[i].codigo;
+        garA[k].nome=garS[i].nome;
+        i++;
+        k++;
+    }
+
+    while (j<contgarT) {
+        garA[k].codigo=garT[j].codigo;
+        garA[k].nome=garT[j].nome;
+        j++;
+        k++;
+    }
+    contgarA=k;
+}
+
+void mostrar_garcom(struct Garcom garA[], int contgarA) {
+    cout << "\n\nLista dos Registros dos Garcoes Atualizada" << endl;
+    for (int i=0;i<contgarA;i++) {
+        cout << "\nCodigo: " << garA[i].codigo;
+        cout << "\nNome: " << garA[i].nome;
+    }
+}
+
 
 int main() {
   struct Categoria catS[20], catT[20], catA[40];
   struct Produto proS[20], proT[20], proA[40];
   struct Ingrediente ingS[20], ingT[20], ingA[40];
   struct Garcom garS[20], garT[20], garA[20];
-  int contcatS,contcatT,contcatA,
-      contproS,contproT,contproA,
-      contingS,contingT,contingA;
-    cout<<"\T---Leitura de Categoria S---"<<endl;
-    cout<<"para sair de leitura digite 0"<<endl;
+
+    int contcatS,contcatT,contcatA,
+        contproS,contproT,contproA,
+        contingS,contingT,contingA,
+        contgarS,contgarT,contgarA;
+
+    cout<<"\n---Leitura de Categoria S---"<<endl;
+    cout<<"\nPara sair de leitura digite 0"<<endl;
     leituraCategoria(catS,contcatS);
-    cout<<"\T---Leitura de Categoria T---"<<endl;
-    cout<<"\npara sair de leitura digite 0"<<endl;
+
+    cout<<"\n---Leitura de Categoria T---"<<endl;
+    cout<<"\nPara sair de leitura digite 0"<<endl;
     leituraCategoria(catT,contcatT);
+
     inclusao_categoria(catS, contcatS, catT, contcatT, catA,contcatA);
     mostrar_categoria(catA, contcatA);
-    cout<<"\T---Leitura de Produtos S---"<<endl;
-    cout<<"para sair de leitura digite 0"<<endl;
+
+    cout<<"\n---Leitura de Produtos S---"<<endl;
+    cout<<"\nPara sair de leitura digite 0"<<endl;
     leituraProduto(proS,contproS);
-    cout<<"\T---Leitura de Produtos T---"<<endl;
-    cout<<"\npara sair de leitura digite 0"<<endl;
+
+    cout<<"\n---Leitura de Produtos T---"<<endl;
+    cout<<"\nPara sair de leitura digite 0"<<endl;
     leituraProduto(proT,contproT);
-   inclusao_produto(catA, proS, contproS, proT, contproT, proA,contproA);
+
+    inclusao_produto(catA, proS, contproS, proT, contproT, proA,contproA);
     mostrar_produto(proA, catA, contproA);
-    cout<<"\T---Leitura Ingrediente S---"<<endl;
-    cout<<"para sair de leitura digite 0"<<endl;
+
+    cout<<"\n---Leitura Ingrediente S---"<<endl;
+    cout<<"\nPara sair de leitura digite 0"<<endl;
     leituraIngrediente(ingS,contingS);
-    cout<<"\T---Leitura Ingrediente T---"<<endl;
-    cout<<"para sair de leitura digite 0"<<endl;
+
+    cout<<"\n---Leitura Ingrediente T---"<<endl;
+    cout<<"\nPara sair de leitura digite 0"<<endl;
     leituraIngrediente(ingT,contingT);
+
     inclusao_ingrediente(ingS, contingS, ingT,contingT, ingA,contingA, proA);
     mostrar_ingrediente(ingA,proA,contingA);
 
+    cout<<"\n---Leitura dos Garcoes S---"<<endl;
+    cout<<"\nPara sair de leitura digite 0"<<endl;
+    leituraGarcom(garS, contgarS);
 
+    cout<<"\n---Leitura do Garcoes T---"<<endl;
+    cout<<"\nPara sair de leitura digite 0"<<endl;
+    leituraGarcom(garT, contgarT);
 
+    inclusao_garcom(garS,contgarS, garT, contgarT, garA,contgarA);
+    mostrar_garcom(garA, contgarA);
 
-    // leitura no main de ingrediente,inclusao ingrediente e mostrar ingrediente
 
     return 0;
 }
