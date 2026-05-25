@@ -59,11 +59,11 @@ struct Consumo_Ingrediente {
 void leituraCategoria (struct Categoria cat[],int&contcat) {
    int i=0;
     for (int saida = 1; i < 5 && saida != 0; i++) {
-        cout << "Categoria " << i+1 << ": ";
-        cout <<"Codigo: ";
+        cout << "\tCategoria " << i+1 <<endl;
+        cout <<"Codigo: "<<endl;
         cin >>cat[i].codigo;
         if (cat[i].codigo > 0) {
-            cout <<"Descricao: ";
+            cout <<"Descricao: "<<endl;
             cin >> cat[i].descricao;
         }
         else saida=0;
@@ -74,13 +74,13 @@ void leituraCategoria (struct Categoria cat[],int&contcat) {
 void leituraProduto (struct Produto pro[],int &contpro) {
    int i=0;
     for (int saida = 1; i < 5 && saida != 0; i++) {
-        cout <<"\TProdutos: " << i+1 << ": ";
-        cout<<"\nCodigo:";
+        cout <<"\t Produto " << i+1 <<endl;
+        cout<<"\nCodigo: "<<endl;
         cin >>pro[i].codigo;
         if (pro[i].codigo > 0) {
-            cout<<"\nDescricao:";
+            cout<<"\nDescricao:"<<endl;
             cin >>pro[i].descricao;
-            cout <<"\nPreco unitario ";
+            cout <<"\nPreco unitario: "<<endl;
             cin >> pro[i].preco_unitario;
         }
         else saida=0;
@@ -91,19 +91,19 @@ void leituraProduto (struct Produto pro[],int &contpro) {
 void leituraIngrediente (struct Ingrediente ing[],int &conting) {
     int i=0;
     for (int saida = 1; i < 5 && saida != 0; i++) {
-        cout <<"Ingredientes: " << i+1 << ": ";
-        cout<<"Codigo: ";
+        cout <<"\tIngrediente " << i+1 <<endl;
+        cout<<"Codigo: "<<endl;
         cin >> ing[i].codigo;
         if (ing[i].codigo > 0) {
-            cout <<"Descricao: ";
+            cout <<"Descricao: "<<endl;
             cin >> ing[i].descricao;
-            cout<<"Quantidade Estoque: ";
+            cout<<"Quantidade Estoque: "<<endl;
             cin >>ing[i].quant_estoque;
-            cout<<"Estoque Minimo: ";
+            cout<<"Estoque Minimo: "<<endl;
             cin >> ing[i].estoque_minimo;
-            cout<<"Estoque Maximo: ";
+            cout<<"Estoque Maximo: "<<endl;
             cin>> ing[i].estoque_maximo;
-            cout<<"Preco Unitario: ";
+            cout<<"Preco Unitario: "<<endl;
             cin >> ing[i].preco_unitario;
         }
         else saida=0;
@@ -114,7 +114,7 @@ void leituraIngrediente (struct Ingrediente ing[],int &conting) {
 void leituraGarcom (struct Garcom gar[], int &contgar) {
     int i=0;
     for (int saida=1; i<5 && saida!=0; i++) {
-        cout<<"\t---Informacoes dos Garcoes---"<<endl;
+        cout<<"\tGarcom "<< i+1 <<endl;
         cout<<"Codigo: "<<endl;
         cin>>gar[i].codigo;
         if (gar[i].codigo>0) {
@@ -130,36 +130,45 @@ void inclusao_categoria(struct Categoria catS[],int contcatS,struct Categoria ca
 int i=0,j=0,k=0;
   for (;i<contcatS && j<contcatT;k++) {
       if (catS[i].codigo<catT[j].codigo) {
-          catA[k].codigo=catS[i].codigo;
-          catA[k].descricao= catS[i].descricao;
-          i++;
+          if (catS[i].codigo!=catT[j].codigo || catS[i].codigo!=catS[i].codigo) {
+              catA[k].codigo=catS[i].codigo;
+              catA[k].descricao= catS[i].descricao;
+              i++;
+          }
       }
       else {
-          catA[k].codigo=catT[j].codigo;
-          catA[k].descricao= catT[j].descricao;
-          j++;
+          if (catT[j].codigo!=catS[i].codigo || catT[j].codigo!=catT[i].codigo ) {
+              catA[k].codigo=catT[j].codigo;
+              catA[k].descricao= catT[j].descricao;
+              j++;
+          }
       }
   }
-    while (i < contcatS) {
-        catA[k].codigo = catS[i].codigo;
-        catA[k].descricao= catS[i].descricao;
-        i++;
-        k++;
+    if (catS[i].codigo!=catT[j].codigo || catS[i].codigo!=catS[i].codigo) {
+        while (i < contcatS) {
+            catA[k].codigo = catS[i].codigo;
+            catA[k].descricao= catS[i].descricao;
+            i++;
+            k++;
+        }
     }
-    while (j < contcatT) {
-        catA[k].codigo = catT[j].codigo;
-        catA[k].descricao= catT[j].descricao;
-        j++;
-        k++;
+
+    if (catT[j].codigo!=catS[i].codigo || catT[j].codigo!=catT[i].codigo ) {
+        while (j < contcatT) {
+            catA[k].codigo = catT[j].codigo;
+            catA[k].descricao= catT[j].descricao;
+            j++;
+            k++;
+        }
     }
 contcatA = k;
 }
 
 void mostrar_categoria(struct Categoria catA[],int contcatA) {
-    cout << "\n\nLista dos Registros no Arquivo Atualizado" << endl;
+    cout << "\n\nLista da Categoria Atualizada" << endl;
     for (int i=0;i<contcatA;i++) {
-        cout << "\nCodigo: " << catA[i].codigo;
-        cout << "\nDescricao: " << catA[i].descricao;
+        cout << "\nCodigo: " << catA[i].codigo<<endl;
+        cout << "\nDescricao: " << catA[i].descricao<<endl;
     }
 }
 
@@ -202,12 +211,12 @@ void inclusao_produto(struct Categoria catA[],struct Produto proS[],int contproS
     contproA=k;
 }
 void mostrar_produto (struct Produto proA[], struct Categoria catA[], int contproA ) {
-    cout << "\n\nLista dos Registros no Arquivo Atualizado" << endl;
+    cout << "\n\nLista de Produtos Atualizada" << endl;
     for (int i=0;i<contproA;i++) {
-        cout << "\nCodigo: " << proA[i].codigo;
-        cout << "\nDescricao: " << proA[i].descricao;
-        cout << "\n Codigo Categoria: " << catA[i].codigo;
-        cout << "\n Valor Unitario: " << proA[i].preco_unitario;
+        cout << "\nCodigo: " << proA[i].codigo<<endl;
+        cout << "\nDescricao: " << proA[i].descricao<<endl;
+        cout << "\n Codigo Categoria: " << catA[i].codigo<<endl;
+        cout << "\n Valor Unitario: " << proA[i].preco_unitario<<endl;
 
     }
 }
@@ -257,29 +266,31 @@ void inclusao_ingrediente (struct Ingrediente ingS[], int contingS, struct Ingre
     contingA=k;
 }
 void mostrar_ingrediente (struct Ingrediente ingA[], struct Produto proA[], int contingA) {
-    cout << "\n\nLista dos Registros no Arquivo Atualizado" << endl;
+    cout << "\n\nLista de Ingredientes Atualizada" << endl;
     for (int i=0;i<contingA;i++) {
-        cout << "\n Codigo: "<< ingA[i].codigo;
-        cout << "\n Descricao: " << ingA[i].descricao;
-        cout << "\n Quantidade Estoque: " << ingA[i].quant_estoque;
-        cout << "\n Quantidade Minimo: " << ingA[i].estoque_minimo;
-        cout << "\n Quantidade Maximo: " << ingA[i].estoque_maximo;
-        cout << "\n Preco Unitario: " << proA[i].preco_unitario;
+        cout << "\n Codigo: "<< ingA[i].codigo<<endl;
+        cout << "\n Descricao: " << ingA[i].descricao<<endl;
+        cout << "\n Quantidade Estoque: " << ingA[i].quant_estoque<<endl;
+        cout << "\n Quantidade Minimo: " << ingA[i].estoque_minimo<<endl;
+        cout << "\n Quantidade Maximo: " << ingA[i].estoque_maximo<<endl;
+        cout << "\n Preco Unitario: " << proA[i].preco_unitario<<endl;
     }
 }
 
 void inclusao_garcom(struct Garcom garS[],int contgarS,struct Garcom garT[],int contgarT,struct Garcom garA[],int &contgarA) {
     int i=0, j=0, k=0;
     for (;i<contgarS && j<contgarT;k++) {
-        if (garS[i].codigo<garT[j].codigo) {
-            garA[k].codigo=garS[i].codigo;
-            garA[k].nome=garS[i].nome;
-            i++;
-        }
-        else{
-            garA[k].codigo=garT[j].codigo;
-            garA[k].nome=garT[j].nome;
-            j++;
+        if (garS[i].codigo!=garT[j].codigo && garS[i].codigo!=garS[i].codigo) {
+            if (garS[i].codigo<garT[j].codigo) {
+                garA[k].codigo=garS[i].codigo;
+                garA[k].nome=garS[i].nome;
+                i++;
+            }
+            else{
+                garA[k].codigo=garT[j].codigo;
+                garA[k].nome=garT[j].nome;
+                j++;
+            }
         }
     }
 
@@ -300,10 +311,10 @@ void inclusao_garcom(struct Garcom garS[],int contgarS,struct Garcom garT[],int 
 }
 
 void mostrar_garcom(struct Garcom garA[], int contgarA) {
-    cout << "\n\nLista dos Registros dos Garcoes Atualizada" << endl;
+    cout << "\n\nLista de Garcoes Atualizada" << endl;
     for (int i=0;i<contgarA;i++) {
-        cout << "\nCodigo: " << garA[i].codigo;
-        cout << "\nNome: " << garA[i].nome;
+        cout << "\nCodigo: " << garA[i].codigo<<endl;
+        cout << "\nNome: " << garA[i].nome<<endl;
     }
 }
 
@@ -319,44 +330,44 @@ int main() {
         contingS,contingT,contingA,
         contgarS,contgarT,contgarA;
 
-    cout<<"\n---Leitura de Categoria S---"<<endl;
+    cout<<"\t---Leitura de Categoria S---"<<endl;
     cout<<"\nPara sair de leitura digite 0"<<endl;
     leituraCategoria(catS,contcatS);
 
-    cout<<"\n---Leitura de Categoria T---"<<endl;
+    cout<<"\t---Leitura de Categoria T---"<<endl;
     cout<<"\nPara sair de leitura digite 0"<<endl;
     leituraCategoria(catT,contcatT);
 
     inclusao_categoria(catS, contcatS, catT, contcatT, catA,contcatA);
     mostrar_categoria(catA, contcatA);
 
-    cout<<"\n---Leitura de Produtos S---"<<endl;
+    cout<<"\t---Leitura de Produtos S---"<<endl;
     cout<<"\nPara sair de leitura digite 0"<<endl;
     leituraProduto(proS,contproS);
 
-    cout<<"\n---Leitura de Produtos T---"<<endl;
+    cout<<"\t---Leitura de Produtos T---"<<endl;
     cout<<"\nPara sair de leitura digite 0"<<endl;
     leituraProduto(proT,contproT);
 
     inclusao_produto(catA, proS, contproS, proT, contproT, proA,contproA);
     mostrar_produto(proA, catA, contproA);
 
-    cout<<"\n---Leitura Ingrediente S---"<<endl;
+    cout<<"\t---Leitura Ingrediente S---"<<endl;
     cout<<"\nPara sair de leitura digite 0"<<endl;
     leituraIngrediente(ingS,contingS);
 
-    cout<<"\n---Leitura Ingrediente T---"<<endl;
+    cout<<"\t---Leitura Ingrediente T---"<<endl;
     cout<<"\nPara sair de leitura digite 0"<<endl;
     leituraIngrediente(ingT,contingT);
 
     inclusao_ingrediente(ingS, contingS, ingT,contingT, ingA,contingA, proA);
     mostrar_ingrediente(ingA,proA,contingA);
 
-    cout<<"\n---Leitura dos Garcoes S---"<<endl;
+    cout<<"\t---Leitura dos Garcoes S---"<<endl;
     cout<<"\nPara sair de leitura digite 0"<<endl;
     leituraGarcom(garS, contgarS);
 
-    cout<<"\n---Leitura do Garcoes T---"<<endl;
+    cout<<"\t---Leitura do Garcoes T---"<<endl;
     cout<<"\nPara sair de leitura digite 0"<<endl;
     leituraGarcom(garT, contgarT);
 
