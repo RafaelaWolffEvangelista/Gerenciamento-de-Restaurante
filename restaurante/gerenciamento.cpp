@@ -293,6 +293,7 @@ void inclusao_produto(struct Categoria catA[], struct Produto proS[], int contpr
             proA[k].preco_unitario = proS[i].preco_unitario;
             i++;
             k++;
+            c++;
         }
         else if (proT[j].codigo < proS[i].codigo) {
             proA[k].codigo = proT[j].codigo;
@@ -301,6 +302,7 @@ void inclusao_produto(struct Categoria catA[], struct Produto proS[], int contpr
             proA[k].preco_unitario = proT[j].preco_unitario;
             j++;
             k++;
+            c++;
         }
         else {
             proA[k].codigo = proS[i].codigo;
@@ -310,6 +312,7 @@ void inclusao_produto(struct Categoria catA[], struct Produto proS[], int contpr
             i++;
             j++;
             k++;
+            c++;
         }
     }
 
@@ -320,6 +323,7 @@ void inclusao_produto(struct Categoria catA[], struct Produto proS[], int contpr
         proA[k].preco_unitario = proS[i].preco_unitario;
         i++;
         k++;
+        c++;
     }
 
     while (j < contproT) {
@@ -329,6 +333,7 @@ void inclusao_produto(struct Categoria catA[], struct Produto proS[], int contpr
         proA[k].preco_unitario = proT[j].preco_unitario;
         j++;
         k++;
+        c++;
     }
     contproA = k;
 }
@@ -466,6 +471,78 @@ void mostrar_garcom(struct Garcom garA[], int contgarA) {
     }
 }
 
+
+void exclusao_produto(struct Categoria catA[], struct Produto proS[], int contproS, struct Produto proT[], int contproT, struct Produto proA[], int &contproA, int codExclusao) {
+    int i = 0, j = 0, k = 0, c = 0;
+
+    while (i < contproS && j < contproT) {
+        if (proS[i].codigo == codExclusao) {
+            i++;
+        }
+        else if (proT[j].codigo == codExclusao) {
+            j++;
+        }
+        else if (proS[i].codigo < proT[j].codigo) {
+            proA[k].codigo = proS[i].codigo;
+            proA[k].descricao = proS[i].descricao;
+            proA[k].codigo_categoria = catA[c].codigo;
+            proA[k].preco_unitario = proS[i].preco_unitario;
+            i++;
+            k++;
+            c++;
+        }
+        else if (proT[j].codigo < proS[i].codigo) {
+            proA[k].codigo = proT[j].codigo;
+            proA[k].descricao = proT[j].descricao;
+            proA[k].codigo_categoria = catA[c].codigo;
+            proA[k].preco_unitario = proT[j].preco_unitario;
+            j++;
+            k++;
+            c++;
+        }
+        else {
+            proA[k].codigo = proS[i].codigo;
+            proA[k].descricao = proS[i].descricao;
+            proA[k].codigo_categoria = catA[c].codigo;
+            proA[k].preco_unitario = proS[i].preco_unitario;
+            i++;
+            j++;
+            k++;
+            c++;
+        }
+    }
+
+    while (i < contproS) {
+        if (proS[i].codigo == codExclusao) {
+            i++;
+        } else {
+            proA[k].codigo = proS[i].codigo;
+            proA[k].descricao = proS[i].descricao;
+            proA[k].codigo_categoria = catA[c].codigo;
+            proA[k].preco_unitario = proS[i].preco_unitario;
+            i++;
+            k++;
+            c++;
+        }
+    }
+
+    while (j < contproT) {
+        if (proT[j].codigo == codExclusao) {
+            j++;
+        } else {
+            proA[k].codigo = proT[j].codigo;
+            proA[k].descricao = proT[j].descricao;
+            proA[k].codigo_categoria = catA[c].codigo;
+            proA[k].preco_unitario = proT[j].preco_unitario;
+            j++;
+            k++;
+            c++;
+        }
+    }
+
+    contproA = k;
+}
+
 int main() {
   struct Categoria catS[20], catT[20], catA[40];
   struct Produto proS[20], proT[20], proA[40];
@@ -475,6 +552,8 @@ int main() {
       contproS,contproT,contproA,
       contingS,contingT,contingA,
       contgarS,contgarT,contgarA;
+
+    int codLeitura=1,codExclusao=-1;
 
     cout<<"\n---Leitura de Categoria S---"<<endl;
     cout<<"Para sair de leitura digite 0"<<endl;
@@ -519,6 +598,31 @@ int main() {
 
     inclusao_garcom(garS,contgarS, garT, contgarT, garA,contgarA);
     mostrar_garcom(garA, contgarA);
+
+    cout<<"\nDeseja realizar uma exclusao de um Produto?"<<endl;
+    cout<<"Se sim digite 1, senao digite 0"<<endl;
+    cin>>codLeitura;
+    while (codLeitura==1 && codExclusao!=0) {
+
+        if (codLeitura==1) {
+            cout << "\nInforme o Codigo do Registro a ser Excluido: ";
+            cin >> codExclusao;
+            exclusao_produto(catA,proS, contproS, proT, contproT, proA, contproA, codExclusao);
+
+            contproS = contproA;
+            contproT = 0;
+
+            for (int i = 0; i < contproA; i++) {
+                proS[i] = proA[i];
+            }
+
+            cout << "\nDeseja realizar mais uma exclusao de um Produto?" << endl;
+            cout << "Se sim digite 1, senao digite 0: ";
+            cin >> codLeitura;
+        }
+    }
+
+    mostrar_produto(proA, catA, contproA);
 
     return 0;
 }
