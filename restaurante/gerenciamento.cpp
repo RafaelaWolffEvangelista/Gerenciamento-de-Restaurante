@@ -567,14 +567,14 @@ void mostrar_produto (struct Produto proA[], struct Categoria catA[], int contpr
 }
 
 int main() {
-  struct Categoria catS[20], catT[20], catA[40];
-  struct Produto proS[20], proT[20], proA[40];
-  struct Ingrediente ingS[20], ingT[20], ingA[40];
-  struct Garcom garS[20], garT[20], garA[20];
-  int contcatS,contcatT,contcatA,
-      contproS,contproT,contproA,
-      contingS,contingT,contingA,
-      contgarS,contgarT,contgarA;
+    struct Categoria catS[20], catT[20], catA[40];
+    struct Produto proS[20], proT[20], proA[40];
+    struct Ingrediente ingS[20], ingT[20], ingA[40];
+    struct Garcom garS[20], garT[20], garA[20];
+    int contcatS,contcatT,contcatA,
+        contproS,contproT,contproA,
+        contingS,contingT,contingA,
+        contgarS,contgarT,contgarA;
 
     int codLeitura=1,codExclusao=-1;
 
@@ -588,19 +588,19 @@ int main() {
 
     inclusao_categoria(catS, contcatS, catT, contcatT, catA,contcatA);
     mostrar_categoria(catA, contcatA);
-<<<<<<< Updated upstream
-=======
-    cout<<"\T---Leitura de Produtos S---"<<endl;
+    <<<<<<< Updated upstream
+    =======
+        cout<<"\T---Leitura de Produtos S---"<<endl;
     cout<<"para sair de leitura digite 0"<<endl;
     leituraProduto(proS,contproS);
     cout<<"\T---Leitura de Produtos T---"<<endl;
     cout<<"para sair de leitura digite 0"<<endl;
     leituraProduto(proT,contproT);
-   inclusao_produto(catA, proS, contproS, proT, contproT, proA,contproA);
+    inclusao_produto(catA, proS, contproS, proT, contproT, proA,contproA);
     mostrar_produto(proA, catA, contproA);
->>>>>>> Stashed changes
+    >>>>>>> Stashed changes
 
-    cout<<"\n---Leitura de Produtos S---"<<endl;
+        cout<<"\n---Leitura de Produtos S---"<<endl;
     cout<<"Para sair de leitura digite 0"<<endl;
     leituraProduto(proS,contproS);
 
@@ -659,4 +659,4 @@ int main() {
     mostrar_produto(proA, catA, contproA);
 
     return 0;
-}
+}}
