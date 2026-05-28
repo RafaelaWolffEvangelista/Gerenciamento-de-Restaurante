@@ -471,7 +471,7 @@ void mostrar_garcom(struct Garcom garA[], int contgarA) {
 }
 
 
-void exclusao_produto(struct Categoria catA[], struct Produto proS[], int contproS, struct Produto proT[], int contproT, struct Produto proA[], int &contproA, int codExclusao) {
+void exclusao_produto(struct Categoria catA[], struct Produto proS[], int contproS, struct Produto proT[], int contproT, struct Produto proA[], int &contproA, int &codExclusao) {
     int i = 0, j = 0, k = 0, c = 0;
 
     while (i < contproS && j < contproT) {
@@ -479,7 +479,7 @@ void exclusao_produto(struct Categoria catA[], struct Produto proS[], int contpr
             i++;
         }
         else if (proT[j].codigo == codExclusao) {
-            j++;
+            j++;    
         }
         else if (proS[i].codigo < proT[j].codigo) {
             proA[k].codigo = proS[i].codigo;
