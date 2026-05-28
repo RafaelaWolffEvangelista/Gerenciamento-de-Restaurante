@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 #include <conio.h>
@@ -104,7 +103,6 @@ void leituraCategoria (struct Categoria cat[], int &contcat) {
 void leituraProduto (struct Produto pro[], int &contpro) {
     int i = 0;
     for (int saida = 1; i < 5 && saida != 0; i++) {
-<<<<<<< Updated upstream
         cout << "\n\t--- Produto " << i+1 << " ---" << endl;
         int codigoDigitado;
         bool acheiDuplicado;
@@ -140,18 +138,6 @@ void leituraProduto (struct Produto pro[], int &contpro) {
         cin >> pro[i].descricao;
         cout << "Preco unitario: ";
         cin >> pro[i].preco_unitario;
-=======
-        cout <<"\nProdutos: " << i+1 << ": ";
-        cout<<"\nCodigo:";
-        cin >>pro[i].codigo;
-        if (pro[i].codigo > 0) {
-            cout <<"\nDescricao:  ";
-            cin >> pro[i].descricao;
-            cout <<"\nPreco unitario:  ";
-            cin >> pro[i].preco_unitario;
-        }
-        else saida=0;
->>>>>>> Stashed changes
     }
     contpro = i;
 }
@@ -555,26 +541,16 @@ void exclusao_produto(struct Categoria catA[], struct Produto proS[], int contpr
 
     contproA = k;
 }
-void mostrar_produto (struct Produto proA[], struct Categoria catA[], int contproA ) {
-    cout << "\n\nLista dos Registros no Arquivo Atualizado" << endl;
-    for (int i=0;i<contproA;i++) {
-        cout << "\nCodigo: " << proA[i].codigo;
-        cout << "\nDescricao: " << proA[i].descricao;
-        cout << "\n Codigo Categoria: " << catA[i].codigo;
-        cout << "\n Valor Unitario: " << proA[i].preco_unitario;
-
-    }
-}
 
 int main() {
-    struct Categoria catS[20], catT[20], catA[40];
-    struct Produto proS[20], proT[20], proA[40];
-    struct Ingrediente ingS[20], ingT[20], ingA[40];
-    struct Garcom garS[20], garT[20], garA[20];
-    int contcatS,contcatT,contcatA,
-        contproS,contproT,contproA,
-        contingS,contingT,contingA,
-        contgarS,contgarT,contgarA;
+  struct Categoria catS[20], catT[20], catA[40];
+  struct Produto proS[20], proT[20], proA[40];
+  struct Ingrediente ingS[20], ingT[20], ingA[40];
+  struct Garcom garS[20], garT[20], garA[20];
+  int contcatS,contcatT,contcatA,
+      contproS,contproT,contproA,
+      contingS,contingT,contingA,
+      contgarS,contgarT,contgarA;
 
     int codLeitura=1,codExclusao=-1;
 
@@ -588,19 +564,8 @@ int main() {
 
     inclusao_categoria(catS, contcatS, catT, contcatT, catA,contcatA);
     mostrar_categoria(catA, contcatA);
-    <<<<<<< Updated upstream
-    =======
-        cout<<"\T---Leitura de Produtos S---"<<endl;
-    cout<<"para sair de leitura digite 0"<<endl;
-    leituraProduto(proS,contproS);
-    cout<<"\T---Leitura de Produtos T---"<<endl;
-    cout<<"para sair de leitura digite 0"<<endl;
-    leituraProduto(proT,contproT);
-    inclusao_produto(catA, proS, contproS, proT, contproT, proA,contproA);
-    mostrar_produto(proA, catA, contproA);
-    >>>>>>> Stashed changes
 
-        cout<<"\n---Leitura de Produtos S---"<<endl;
+    cout<<"\n---Leitura de Produtos S---"<<endl;
     cout<<"Para sair de leitura digite 0"<<endl;
     leituraProduto(proS,contproS);
 
@@ -659,4 +624,4 @@ int main() {
     mostrar_produto(proA, catA, contproA);
 
     return 0;
-}}
+}
