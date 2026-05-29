@@ -553,75 +553,138 @@ int main() {
       contgarS,contgarT,contgarA;
 
     int codLeitura=1,codExclusao=-1;
+    int escolha_principal, escolha_cadastro,
+    escolha_pedido, escolha_cosulta;
 
-    cout<<"\n---Leitura de Categoria S---"<<endl;
-    cout<<"Para sair de leitura digite 0"<<endl;
-    leituraCategoria(catS,contcatS);
+    cout << "===== MENU PRINCIPAL =====\n";
+    cout << "1 - Cadastro\n";
+    cout << "2 - Exclusao\n";
+    cout << "3 - Novo Pedido\n";
+    cout << "4 - Consulta\n";
+    cout << "5 - Mostrar Registros\n";
+    cout << "0 - Sair\n";
+    cin >> escolha_principal;
 
-    cout<<"\n---Leitura de Categoria T---"<<endl;
-    cout<<"Para sair de leitura digite 0"<<endl;
-    leituraCategoria(catT,contcatT);
+    do
+    switch (escolha_principal) {
 
-    inclusao_categoria(catS, contcatS, catT, contcatT, catA,contcatA);
-    mostrar_categoria(catA, contcatA);
+        case 1:
+          cout << "\n==== MENU CADASTRO ====\n";
+          cout << "1 - Nova Categoria\n";
+          cout << "2 - Novo Produto\n";
+          cout << "3 - Novo Ingrediente\n";
+          cout << "4 - Novo Garcom\n";
+          cout << "0 - Voltar\n";
+          cin >> escolha_cadastro;
 
-    cout<<"\n---Leitura de Produtos S---"<<endl;
-    cout<<"Para sair de leitura digite 0"<<endl;
-    leituraProduto(proS,contproS);
+            switch (escolha_cadastro) {
+                case 1:
+                    cout<<"\n---Leitura de Categoria S---"<<endl;
+                    cout<<"Para sair de leitura digite 0"<<endl;
+                    leituraCategoria(catS,contcatS);
 
-    cout<<"\n---Leitura de Produtos T---"<<endl;
-    cout<<"Para sair de leitura digite 0"<<endl;
-    leituraProduto(proT,contproT);
+                    cout<<"\n---Leitura de Categoria T---"<<endl;
+                    cout<<"Para sair de leitura digite 0"<<endl;
+                    leituraCategoria(catT,contcatT);
 
-    inclusao_produto(catA, proS, contproS, proT, contproT, proA,contproA);
-    mostrar_produto(proA, catA, contproA);
+                    inclusao_categoria(catS, contcatS, catT, contcatT, catA,contcatA);
+                    mostrar_categoria(catA, contcatA);
+                    break;
 
-    cout<<"\t---Leitura Ingrediente S---"<<endl;
-    cout<<"\nPara sair de leitura digite 0"<<endl;
-    leituraIngrediente(ingS,contingS);
+                case 2:
+                    cout<<"\n---Leitura de Produtos S---"<<endl;
+                    cout<<"Para sair de leitura digite 0"<<endl;
+                    leituraProduto(proS,contproS);
 
-    cout<<"\t---Leitura Ingrediente T---"<<endl;
-    cout<<"\nPara sair de leitura digite 0"<<endl;
-    leituraIngrediente(ingT,contingT);
+                    cout<<"\n---Leitura de Produtos T---"<<endl;
+                    cout<<"Para sair de leitura digite 0"<<endl;
+                    leituraProduto(proT,contproT);
 
-    inclusao_ingrediente(ingS, contingS, ingT,contingT, ingA,contingA, proA);
-    mostrar_ingrediente(ingA,proA,contingA);
+                    inclusao_produto(catA, proS, contproS, proT, contproT, proA,contproA);
+                    mostrar_produto(proA, catA, contproA);
+                    break;
 
-    cout<<"\n---Leitura dos Garcoes S---"<<endl;
-    cout<<"Para sair de leitura digite 0"<<endl;
-    leituraGarcom(garS, contgarS);
+                case 3:
+                    cout<<"\t---Leitura Ingrediente S---"<<endl;
+                    cout<<"\nPara sair de leitura digite 0"<<endl;
+                    leituraIngrediente(ingS,contingS);
 
-    cout<<"\n---Leitura do Garcoes T---"<<endl;
-    cout<<"Para sair de leitura digite 0"<<endl;
-    leituraGarcom(garT, contgarT);
+                    cout<<"\t---Leitura Ingrediente T---"<<endl;
+                    cout<<"\nPara sair de leitura digite 0"<<endl;
+                    leituraIngrediente(ingT,contingT);
 
-    inclusao_garcom(garS,contgarS, garT, contgarT, garA,contgarA);
-    mostrar_garcom(garA, contgarA);
+                    inclusao_ingrediente(ingS, contingS, ingT,contingT, ingA,contingA, proA);
+                    mostrar_ingrediente(ingA,proA,contingA);
+                    break;
 
-    cout<<"\nDeseja realizar uma exclusao de um Produto?"<<endl;
-    cout<<"Se sim digite 1, senao digite 0"<<endl;
-    cin>>codLeitura;
-    while (codLeitura==1 && codExclusao!=0) {
+                case 4:
+                    cout<<"\n---Leitura dos Garcoes S---"<<endl;
+                    cout<<"Para sair de leitura digite 0"<<endl;
+                    leituraGarcom(garS, contgarS);
 
-        if (codLeitura==1) {
-            cout << "\nInforme o Codigo do Registro a ser Excluido: ";
-            cin >> codExclusao;
-            exclusao_produto(catA,proS, contproS, proT, contproT, proA, contproA, codExclusao);
+                    cout<<"\n---Leitura do Garcoes T---"<<endl;
+                    cout<<"Para sair de leitura digite 0"<<endl;
+                    leituraGarcom(garT, contgarT);
 
-            contproS = contproA;
-            contproT = 0;
-
-            for (int i = 0; i < contproA; i++) {
-                proS[i] = proA[i];
+                    inclusao_garcom(garS,contgarS, garT, contgarT, garA,contgarA);
+                case 0:
+                    break;
             }
 
-            cout << "\nDeseja realizar mais uma exclusao de um Produto?" << endl;
-            cout << "Se sim digite 1, senao digite 0: ";
-            cin >> codLeitura;
-        }
-    }
+        case 2:
+            while (codLeitura==1 && codExclusao!=0) {
 
-    mostrar_produto(proA, catA, contproA);
+                if (codLeitura==1) {
+                    cout << "\nInforme o Codigo de Registro do Produto a ser Excluido: ";
+                    cin >> codExclusao;
+                    exclusao_produto(catA,proS, contproS, proT, contproT, proA, contproA, codExclusao);
+
+                    contproS = contproA;
+                    contproT = 0;
+
+                    for (int i = 0; i < contproA; i++) {
+                        proS[i] = proA[i];
+                    }
+
+                    cout << "\nDeseja realizar mais uma exclusao de um Produto?" << endl;
+                    cout << "Se sim digite 1, senao digite 0: ";
+                    cin >> codLeitura;
+                }
+            }
+            break;
+        /*novo pedido, fazer tudo relacionado a novo pedido
+            3 - Novo Pedido
+
+            === PEDIDOS ===
+
+            1 - Criar Pedido
+            2 - Adicionar Produto ao Pedido
+            3 - Finalizar Pedido
+            0 - Voltar */
+        case 3:
+
+            break;
+
+            /*pra mostrar tudo que a gente fez, podendo a pessoa escolher qual quer ver
+        4 - Consulta
+        === CONSULTAS ===
+
+        1 - Funcionários
+        2 - Garçons
+        3 - Produtos
+        4 - Condimentos
+        5 - Pedidos
+        0 - Voltar  */
+        case 4:
+            break;
+
+        case 0:
+            break;
+
+        default:
+            cout << "Opcao invalida";
+    } while(escolha_principal != 0);
+
 
     return 0;
 }
