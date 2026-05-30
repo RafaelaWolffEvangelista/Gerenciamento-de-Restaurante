@@ -274,8 +274,8 @@ void inclusao_categoria(struct Categoria catS[], int contcatS, struct Categoria 
 }
 
 void mostrar_categoria(struct Categoria catA[],int contcatA) {
-    cout << "\n\nLista dos Registros na Categoria Atualizada" << endl;
     for (int i=0;i<contcatA;i++) {
+    cout << "\n\nLista dos Registros na Categoria Atualizada" << endl;
         cout << "\nCodigo: " << catA[i].codigo;
         cout << "\nDescricao: " << catA[i].descricao;
     }
@@ -338,8 +338,8 @@ void inclusao_produto(struct Categoria catA[], struct Produto proS[], int contpr
 }
 
 void mostrar_produto (struct Produto proA[], struct Categoria catA[], int contproA ) {
-    cout << "\n\nLista de Produtos Atualizada" << endl;
     for (int i=0;i<contproA;i++) {
+    cout << "\n\nLista de Produtos Atualizada" << endl;
         cout << "\nCodigo: " << proA[i].codigo<<endl;
         cout << "\nDescricao: " << proA[i].descricao<<endl;
         cout << "\n Codigo Categoria: " << catA[i].codigo<<endl;
@@ -410,8 +410,8 @@ void inclusao_ingrediente (struct Ingrediente ingS[], int contingS, struct Ingre
 }
 
 void mostrar_ingrediente (struct Ingrediente ingA[], struct Produto proA[], int contingA) {
-    cout << "\n\nLista de Ingredientes Atualizada" << endl;
     for (int i=0;i<contingA;i++) {
+    cout << "\n\nLista de Ingredientes Atualizada" << endl;
         cout << "\n Codigo: "<< ingA[i].codigo<<endl;
         cout << "\n Descricao: " << ingA[i].descricao<<endl;
         cout << "\n Quantidade Estoque: " << ingA[i].quant_estoque<<endl;
@@ -463,8 +463,8 @@ void inclusao_garcom(struct Garcom garS[], int contgarS, struct Garcom garT[], i
 }
 
 void mostrar_garcom(struct Garcom garA[], int contgarA) {
-    cout << "\n\nLista dos Registros dos Garcoes Atualizada" << endl;
     for (int i=0;i<contgarA;i++) {
+    cout << "\n\nLista dos Registros dos Garcoes Atualizada" << endl;
         cout << "\nCodigo: " << garA[i].codigo;
         cout << "\nNome: " << garA[i].nome;
     }
@@ -588,7 +588,6 @@ int main() {
                     leituraCategoria(catT,contcatT);
 
                     inclusao_categoria(catS, contcatS, catT, contcatT, catA,contcatA);
-                    mostrar_categoria(catA, contcatA);
                     break;
 
                 case 2:
@@ -601,7 +600,7 @@ int main() {
                     leituraProduto(proT,contproT);
 
                     inclusao_produto(catA, proS, contproS, proT, contproT, proA,contproA);
-                    mostrar_produto(proA, catA, contproA);
+
                     break;
 
                 case 3:
@@ -614,7 +613,7 @@ int main() {
                     leituraIngrediente(ingT,contingT);
 
                     inclusao_ingrediente(ingS, contingS, ingT,contingT, ingA,contingA, proA);
-                    mostrar_ingrediente(ingA,proA,contingA);
+
                     break;
 
                 case 4:
@@ -675,8 +674,54 @@ int main() {
         4 - Condimentos
         5 - Pedidos
         0 - Voltar  */
-        case 4:
-            break;
+        case 5:
+
+            cout << "====MENU CONSULTA====\n" << endl;
+            cout << "1 - Garcom\n" << endl;
+            cout << "2 - Produtos\n" << endl;
+            cout << "3 - Categoria\n" << endl;
+            cout << "4 - Ingredientes\n" << endl;
+            cout << "0 - sair\n" << endl;
+            cin >> escolha_cosulta;
+
+
+            switch (escolha_cosulta) {
+                case 1: {
+                    if (garA[0].codigo >= 1) {
+                        mostrar_garcom(garA, contgarA);
+                        break;
+                    }
+                    cout<<"Registro se encontra vazio\n"<<endl;
+                }
+
+
+                case 2: {
+                    if (proA[0].codigo >= 1) {
+                        mostrar_produto(proA, catA, contproA);
+                        break;
+                    }
+                    cout<<"Registro se encontra vazio\n"<<endl;
+                }
+
+                case 3: {
+                    if (catA[0].codigo >= 1) {
+                        mostrar_categoria(catA, contcatA);
+                        break;
+                    }
+                    cout<<"Registro se encontra vazio\n"<<endl;
+                }
+
+                case 4: {
+                    if (ingA[0].codigo >= 1) {
+                        mostrar_ingrediente(ingA, proA, contingA);
+                        break;
+                    }
+                    cout<<"Registro se encontra vazio\n"<<endl;
+                }
+                    
+                case 0:
+                    break;
+            }
 
         case 0:
             break;
