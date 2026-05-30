@@ -685,40 +685,42 @@ int main() {
             cin >> escolha_cosulta;
 
 
-            switch (escolha_cosulta) {
+            switch (escolha_cosulta)
                 case 1: {
                     if (garA[0].codigo >= 1) {
                         mostrar_garcom(garA, contgarA);
-                        break;
+
                     }
                     cout<<"Registro se encontra vazio\n"<<endl;
-                }
+                break;
 
-
-                case 2: {
+                case 2:
                     if (proA[0].codigo >= 1) {
                         mostrar_produto(proA, catA, contproA);
-                        break;
+
                     }
                     cout<<"Registro se encontra vazio\n"<<endl;
-                }
+                    break;
 
-                case 3: {
+
+                case 3:
                     if (catA[0].codigo >= 1) {
                         mostrar_categoria(catA, contcatA);
-                        break;
+
                     }
                     cout<<"Registro se encontra vazio\n"<<endl;
-                }
+                    break;
 
-                case 4: {
+
+                case 4:
                     if (ingA[0].codigo >= 1) {
                         mostrar_ingrediente(ingA, proA, contingA);
-                        break;
+
                     }
                     cout<<"Registro se encontra vazio\n"<<endl;
-                }
-                    
+                    break;
+
+
                 case 0:
                     break;
             }
