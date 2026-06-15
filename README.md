@@ -6,8 +6,8 @@ Este projeto foi desenvolvido como trabalho prático para a disciplina de Algori
 
 Autoras:
 
-· Rafaela Wolff
-· Maria Luiza
+· RafaelaWolffEvangelista
+· MariaFerrari0
 
 O objetivo do trabalho foi implementar um sistema completo para gerenciar as operações de um restaurante, incluindo cadastro de categorias, produtos, ingredientes, clientes, garçons, controle de estoque, pedidos e consumo de ingredientes.
 
